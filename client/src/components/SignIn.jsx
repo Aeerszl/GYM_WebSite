@@ -1,8 +1,11 @@
-import React  from "react";
+
+import React, { useState } from "react";
 import styled from "styled-components";
 import TextInput from "./TextInput";
 import Button from "./Button";
-
+import { UserSignIn } from "../api";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../redux/reducers/userSlice";
 
 const Container = styled.div`
   width: 100%;
@@ -22,8 +25,43 @@ const Span = styled.div`
   color: ${({ theme }) => theme.text_secondary + 90};
 `;
 
-const SignIn = () => {  
- 
+const SignIn = () => {
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const validateInputs = () => {
+    if (!email || !password) {
+      alert("Please fill in all fields");
+      return false;
+    }
+    return true;
+  };
+
+  const handelSignIn = async () => {
+    setLoading(true);
+    setButtonDisabled(true);
+    if (validateInputs()) {
+      try {
+        const res = await UserSignIn({ email, password });
+        if (res && res.data) {
+          dispatch(loginSuccess(res.data));  // Giriş başarılıysa
+          alert("Login Success");
+        } else {
+          alert("Login failed: No data received");
+        }
+      } catch (err) {
+        const errorMessage = err.response?.data?.message || err.message || "An error occurred during login";
+        alert(errorMessage);
+      } finally {
+        setLoading(false);
+        setButtonDisabled(false);
+      }
+    }
+  };
+  
   return (
     <Container>
       <div>
@@ -40,16 +78,21 @@ const SignIn = () => {
         <TextInput
           label="Email Address"
           placeholder="Enter your email address"
+          value={email}
+          handelChange={(e) => setEmail(e.target.value)}
         />
         <TextInput
           label="Password"
           placeholder="Enter your password"
           password
-       
+          value={password}
+          handelChange={(e) => setPassword(e.target.value)}
         />
         <Button
           text="SignIn"
-         
+          onClick={handelSignIn}
+          isLoading={loading}
+          isDisabled={buttonDisabled}
         />
       </div>
     </Container>
