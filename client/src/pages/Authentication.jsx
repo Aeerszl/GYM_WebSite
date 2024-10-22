@@ -4,6 +4,7 @@ import LogoImage from "../utils/Images/GymLogo.png";
 import AuthImage from "../utils/Images/GymKapak.jpg";
 import SignIn from "../components/SignIn";
 import SignUp from "../components/SignUp";
+
 const Container = styled.div`
   flex: 1;
   height: 100%;
@@ -11,24 +12,28 @@ const Container = styled.div`
   background: ${({ theme }) => theme.bg};
   @media (max-width: 700px) {
     flex-direction: column;
-  }`;
+  }
+`;
 const Left = styled.div`
   flex: 1;
   position: relative;
   @media (max-width: 700px) {
     display: none;
-  }`;
+  }
+`;
 const Logo = styled.img`
   position: absolute;
   width: 70px;
   top: 40px;
   left: 60px;
-  z-index: 10;`;
+  z-index: 10;
+`;
 const Image = styled.img`
   position: relative;
   height: 100%;
   width: 100%;
-  object-fit: cover;`;
+  object-fit: cover;
+`;
 
 const Right = styled.div`
   flex: 1;
@@ -38,34 +43,35 @@ const Right = styled.div`
   padding: 40px;
   gap: 16px;
   align-items: center;
-  justify-content: center;`;
+  justify-content: center;
+`;
 
-  const Text = styled.div`
+const Text = styled.div`
   font-size: 16px;
   text-align: center;
   color: ${({ theme }) => theme.text_secondary};
   margin-top: 16px;
   @media (max-width: 400px) {
     font-size: 14px;
-  }`;
-
+  }
+`;
 const TextButton = styled.span`
   color: ${({ theme }) => theme.primary};
   cursor: pointer;
   transition: all 0.3s ease;
-  font-weight: 600;`;
+  font-weight: 600;
+`;
 
 const Authentication = () => {
-    const [login, setLogin] = useState(false);
-
+  const [login, setLogin] = useState(false);
   return (
-   <Container>
-       <Left>
-       <Logo src={LogoImage} />
-       <Image src={AuthImage} />
-       </Left>
-       <Right>
-       {!login ? (
+    <Container>
+      <Left>
+        <Logo src={LogoImage} />
+        <Image src={AuthImage} />
+      </Left>
+      <Right>
+        {!login ? (
           <>
             <SignIn />
             <Text>
@@ -81,10 +87,10 @@ const Authentication = () => {
               <TextButton onClick={() => setLogin(false)}>SignIn</TextButton>
             </Text>
           </>
-        )}      
-         </Right>
-   </Container>
+        )}
+      </Right>
+    </Container>
   );
 };
 
-export default Authentication
+export default Authentication;

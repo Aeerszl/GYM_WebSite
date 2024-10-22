@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import styled from 'styled-components'
-import LogoImg from "../utils/Images/GymLogo.png";
-import { Link as LinkR, NavLink } from "react-router-dom";
-import { MenuRounded } from '@mui/icons-material';
-import { Avatar } from "@mui/material";
 
-const Nav = styled.div`  
+import React, { useState } from "react";
+import styled from "styled-components";
+import LogoImg from "../utils/Images/Logo.png";
+import { Link as LinkR, NavLink } from "react-router-dom";
+import { MenuRounded } from "@mui/icons-material";
+import { Avatar } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { logout } from "../redux/reducers/userSlice";
+
+const Nav = styled.div`
   background-color: ${({ theme }) => theme.bg};
   height: 80px;
   display: flex;
@@ -27,7 +30,7 @@ const NavContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   font-size: 1rem;
-  `;
+`;
 const NavLogo = styled(LinkR)`
   width: 100%;
   display: flex;
@@ -38,8 +41,8 @@ const NavLogo = styled(LinkR)`
   font-size: 18px;
   text-decoration: none;
   color: ${({ theme }) => theme.black};
-  `;
-const Logo= styled.img`
+`;
+const Logo = styled.img`
   height: 42px;
 `;
 const Mobileicon = styled.div`
@@ -50,6 +53,7 @@ const Mobileicon = styled.div`
     align-items: center;
   }
 `;
+
 const NavItems = styled.ul`
   width: 100%;
   display: flex;
@@ -79,6 +83,7 @@ const Navlink = styled(NavLink)`
     border-bottom: 1.8px solid ${({ theme }) => theme.primary};
   }
 `;
+
 const UserContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -100,6 +105,7 @@ const TextButton = styled.div`
     color: ${({ theme }) => theme.primary};
   }
 `;
+
 const MobileMenu = styled.ul`
   display: flex;
   flex-direction: column;
@@ -121,23 +127,22 @@ const MobileMenu = styled.ul`
   opacity: ${({ isOpen }) => (isOpen ? "100%" : "0")};
   z-index: ${({ isOpen }) => (isOpen ? "1000" : "-1000")};
 `;
-const Navbar = () => {
-  
-  const [isOpen, setisOpen] = useState(false);
 
-  
+const Navbar = ({ currentUser }) => {
+  const dispatch = useDispatch();
+  const [isOpen, setisOpen] = useState(false);
   return (
- <Nav>
-    <NavContainer>
-         <Mobileicon onClick={() => setisOpen(!isOpen)}>
-            <MenuRounded sx={{ color: "inherit" }} />
-         </Mobileicon>
-       <NavLogo to="">
-       <Logo src={LogoImg} />
-            Gym Web     
-       </NavLogo>
-       
-       <MobileMenu isOpen={isOpen}>
+    <Nav>
+      <NavContainer>
+        <Mobileicon onClick={() => setisOpen(!isOpen)}>
+          <MenuRounded sx={{ color: "inherit" }} />
+        </Mobileicon>
+        <NavLogo to="/">
+          <Logo src={LogoImg} />
+          Fittrack
+        </NavLogo>
+
+        <MobileMenu isOpen={isOpen}>
           <Navlink to="/">Dashboard</Navlink>
           <Navlink to="/workouts">Workouts</Navlink>
           <Navlink to="/tutorials">Tutorials</Navlink>
@@ -145,22 +150,21 @@ const Navbar = () => {
           <Navlink to="/contact">Contact</Navlink>
         </MobileMenu>
 
-
-       <NavItems>
+        <NavItems>
           <Navlink to="/">Dashboard</Navlink>
           <Navlink to="/workouts">Workouts</Navlink>
           <Navlink to="/tutorials">Tutorials</Navlink>
           <Navlink to="/blogs">Blogs</Navlink>
           <Navlink to="/contact">Contact</Navlink>
         </NavItems>
-      
-        <UserContainer>
-          <Avatar/>
-          <TextButton >Logout</TextButton>
-        </UserContainer>
-    </NavContainer>
- </Nav>
-  )
-}
 
-export default Navbar
+        <UserContainer>
+          <Avatar src={currentUser?.img}>{currentUser?.name[0]}</Avatar>
+          <TextButton onClick={() => dispatch(logout())}>Logout</TextButton>
+        </UserContainer>
+      </NavContainer>
+    </Nav>
+  );
+};
+
+export default Navbar;
