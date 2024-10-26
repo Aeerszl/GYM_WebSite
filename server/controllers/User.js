@@ -217,7 +217,18 @@ export const getWorkoutsByDate = async (req, res, next) => {
     next(err);
   }
 };
-
+export const deleteWorkout = async (req, res) => {
+  try {
+    const workoutName = req.params.workoutName; // Silinecek egzersizin adını alıyoruz
+    const deletedWorkout = await Workout.findOneAndDelete({ workoutName }); // Egzersizi veritabanından siliyoruz
+    if (!deletedWorkout) {
+      return res.status(404).json({ error: "Workout not found" });
+    }
+    res.status(200).json({ message: "Workout deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete workout" });
+  }
+};
 export const addWorkout = async (req, res, next) => {
   try {
     const userId = req.user?.id;

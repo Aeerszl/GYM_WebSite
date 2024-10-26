@@ -1,4 +1,3 @@
-
 import axios from "axios";
 
 const API = axios.create({
@@ -21,4 +20,10 @@ export const getWorkouts = async (token, date) =>
 export const addWorkout = async (token, data) =>
   await API.post(`/user/workout`, data, {
     headers: { Authorization: `Bearer ${token}` },
+  });
+
+// `deleteWorkout` fonksiyonunu tanımlayın
+export const deleteWorkout = async (token, workoutName) => 
+  await API.delete(`/user/workout/${encodeURIComponent(workoutName)}`, {
+    headers: { Authorization: `Bearer ${token}` }
   });
