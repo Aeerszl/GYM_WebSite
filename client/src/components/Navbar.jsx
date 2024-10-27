@@ -35,12 +35,17 @@ const NavLogo = styled(LinkR)`
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 0 6px;
+  gap: 4px;
+  padding: 0 2px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 14px;
   text-decoration: none;
   color: ${({ theme }) => theme.black};
+    @media (max-width: 768px) {
+    font-size: 10px; /* Tablet ve daha küçük ekranlar için */
+  
+  }
+
 `;
 const Logo = styled.img`
   height: 98px;
@@ -101,8 +106,10 @@ const TextButton = styled.div`
   font-size: 16px;
   transition: all 0.3s ease;
   font-weight: 600;
-  &:hover {
-    color: ${({ theme }) => theme.primary};
+  @media (max-width: 768px) {
+    font-size: 12px; /* Tablet ve daha küçük ekranlar için */
+  }
+ 
   }
 `;
 
@@ -153,7 +160,7 @@ const Navbar = ({ currentUser }) => {
         <NavItems>
           <Navlink to="/">Dashboard</Navlink>
           <Navlink to="/workouts">Workouts</Navlink>
-          <Navlink to="/tutorials">Tutorials</Navlink>
+          <Navlink to="/tutorial">Tutorial</Navlink>
           <Navlink to="/blogs">Blogs</Navlink>
           <Navlink to="/contact">Contact</Navlink>
         </NavItems>
