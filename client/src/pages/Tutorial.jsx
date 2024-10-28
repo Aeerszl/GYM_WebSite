@@ -3,6 +3,10 @@ import { Container, TextField, Typography, Box, Button,Grid } from '@mui/materia
 import { lightTheme } from '../utils/Themes';
 import styled from 'styled-components';
 
+import exerciseBg from '../utils/Images/Antrenman.jpg'; 
+import kaloriBg from '../utils/Images/kalori.jpg'; 
+import Karikatur from '../utils/Images/StickMan.jpg';
+
 import biceps_curl from '../utils/Images/Bicep_Curl.jpg';
 import hammer_curl from '../utils/Images/Hammer.jpg';
 import triceps_dip from '../utils/Images/triceps_dip.jpg';
@@ -44,7 +48,7 @@ import MountainClimbers from '../utils/Images/MountainClimbers.jpg';
 import SitUp from '../utils/Images/SitUp.png';
 
 import pull_up from '../utils/Images/pull_up.jpg';
-import bent_over_row from '../utils/Images/bent_over_row.png';
+import bent_over_row from '../utils/Images/bent_over_row.jpg';
 import lat_pulldown from '../utils/Images/lat_pulldown.jpg';
 import seated_row from '../utils/Images/seated_row.jpg';
 import TBarRow from '../utils/Images/T-BarRow.jpg';
@@ -54,28 +58,52 @@ const Title = styled(Typography)`
   color: ${lightTheme.primary};
   margin-bottom: 10px;
 `;
-
+const TitleContainer = styled.div`
+  display: flex;
+  justify-content: center; /* Yatayda ortalar */
+  align-items: center; /* Dikeyde ortalar */
+  margin-bottom: 20px; /* Alt boşluk */
+`;
 const ButtonContainer = styled(Box)`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 40px;
 `;
 
-const ExerciseButton = styled(Button)`
+
+
+const SelectButton = styled(Button)`
   width: 45%;
-  height: 100px;
-  font-size: 1.2rem;
+  height: 120px;
+  font-size: 1.4rem;
+  border-radius: 12px;
   background-size: cover;
   background-position: center;
+  transition: all 0.3s ease;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.4);
+
   &:first-child {
-    background-image: url('/images/calorie_bg.jpg'); /* Buton için resim ekleyin */
+    background-image: url(${kaloriBg});
   }
+
   &:last-child {
-    background-image: url('/images/exercise_bg.jpg'); /* Buton için resim ekleyin */
+    background-image: url(${exerciseBg});
+  }
+
+  &:hover {
+    filter: brightness(1.1);
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(0.98);
   }
 `;
+
 
 const ExerciseListContainer = styled(Box)`
   margin-top: 20px;
@@ -84,6 +112,27 @@ const ExerciseListContainer = styled(Box)`
 const CalorieCalculatorContainer = styled(Box)`
   margin-bottom: 20px;
 `;
+
+const Text = styled.h2`
+ font-family: 'Caveat', cursive;
+ ;  font-weight: 700;
+  color: ${({ theme }) => theme.text_primary}; /* Temadan birincil metin rengini alır */
+  text-align: center;
+  line-height: 1.4;
+  margin-top: 60px;
+
+  /* Responsive font boyutları */
+  @media (max-width: 1200px) {
+    font-size: 2rem;
+  }
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+  }
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+  }
+`;
+
 const ExerciseList = ({ selectedArea, onBack }) => {
   const exercises = {
     arm: [
@@ -217,41 +266,69 @@ const CalorieCalculator = ({ onBack }) => {
     </CalorieCalculatorContainer>
   );
 };
-
 const Tutorial = () => {
-    const [showCalories, setShowCalories] = useState(false);
-    const [showExercises, setShowExercises] = useState(false);
-    const [selectedArea, setSelectedArea] = useState('');
-  
-    return (
-      <Container maxWidth="sm">
+  const [showCalories, setShowCalories] = useState(false);
+  const [showExercises, setShowExercises] = useState(false);
+  const [selectedArea, setSelectedArea] = useState('');
+
+  return (
+    <Container maxWidth="sm">
+      <TitleContainer>
         <Title variant="h6">Egzersiz ve Kalori Hesaplama Rehberi</Title>
-        {!showCalories && !showExercises ? (
+      </TitleContainer>
+      {!showCalories && !showExercises ? (
+        <>
           <ButtonContainer>
-            <ExerciseButton onClick={() => setShowCalories(true)}>Kalori Hesapla</ExerciseButton>
-            <ExerciseButton onClick={() => setShowExercises(true)}>Bölge Seç</ExerciseButton>
+            <SelectButton variant="contained" onClick={() => setShowCalories(true)}>Kalori Hesapla</SelectButton>
+            <SelectButton variant="contained" onClick={() => setShowExercises(true)}>Bölge Seç</SelectButton>
           </ButtonContainer>
-        ) : showCalories ? (
-          <CalorieCalculator onBack={() => setShowCalories(false)} />
-        ) : (
-          showExercises && (
-            <>
-              {!selectedArea ? (
-                <ButtonContainer>
-                  {['arm', 'leg', 'shoulder', 'chest', 'abs', 'back'].map((area) => (
-                    <Button key={area} variant="contained" onClick={() => setSelectedArea(area)} style={{ width: '45%', margin: '5px 0' }}>
-                      {area.charAt(0).toUpperCase() + area.slice(1)}
-                    </Button>
-                  ))}
-                </ButtonContainer>
-              ) : (
-                <ExerciseList selectedArea={selectedArea} onBack={() => setSelectedArea('')} />
-              )}
-            </>
-          )
-        )}
-      </Container>
-    );
-  };
+          {/* Resmi buraya ekleyin */}
+
+          <Text>"Fit olmak bir hedef değil, yaşam biçimidir."</Text>
+          <div style={{ marginTop: '40px', textAlign: 'center' }}>
+            <img 
+              src={Karikatur} 
+              alt="Karikatür" 
+              style={{ maxWidth: '50%', height: 'auto'/*,  borderRadius: '100px'*/}} 
+            />
+          </div>
+        </>
+      ) : showCalories ? (
+        <CalorieCalculator onBack={() => setShowCalories(false)} />
+      ) : (
+        showExercises && (
+          <>
+            {!selectedArea ? (
+              <ButtonContainer>
+                {['arm', 'leg', 'shoulder', 'chest', 'abs', 'back'].map((area) => (
+                  <Button
+                    key={area}
+                    variant="contained"
+                    onClick={() => setSelectedArea(area)}
+                    style={{ width: '45%', margin: '5px 0' }}
+                  >
+                    {area.charAt(0).toUpperCase() + area.slice(1)}
+                  </Button>
+                ))}
+                <Button
+                  variant="outlined"
+                  onClick={() => {
+                    setShowExercises(false); // ShowExercises state'ini false yaparak geri döneriz
+                    setSelectedArea(''); // Seçilen alanı sıfırlarız
+                  }}
+                  style={{ marginTop: '10px' }}
+                >
+                  Geri Dön
+                </Button>
+              </ButtonContainer>
+            ) : (
+              <ExerciseList selectedArea={selectedArea} onBack={() => setSelectedArea('')} />
+            )}
+          </>
+        )
+      )}
+    </Container>
+  );
+};
   
   export default Tutorial;
