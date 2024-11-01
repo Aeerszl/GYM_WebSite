@@ -129,7 +129,7 @@ const Text = styled.h2`
     font-size: 1.8rem;
   }
   @media (max-width: 480px) {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 `;
 
@@ -193,7 +193,7 @@ const ExerciseList = ({ selectedArea, onBack }) => {
   
   return (
     <ExerciseListContainer>
-      <Typography variant="h6">Seçilen Bölge: {selectedArea}</Typography>
+      <Typography variant="h6">Selected Muscle Group: {selectedArea}</Typography>
       <Grid container spacing={1}>
         {exercises[selectedArea]?.map((exercise, index) => (
           <Grid item xs={6} key={index}>
@@ -205,7 +205,7 @@ const ExerciseList = ({ selectedArea, onBack }) => {
         ))}
       </Grid>
       <Button variant="outlined" onClick={onBack} style={{ marginTop: '10px' }}>
-        Geri Dön
+        Go Back ↩
       </Button>
     </ExerciseListContainer>
   );
@@ -235,31 +235,31 @@ const CalorieCalculator = ({ onBack }) => {
 
   return (
     <CalorieCalculatorContainer>
-      <Typography variant="h7">Kalori Hesaplama</Typography>
+      <Typography variant="h7">Calorie Calculation</Typography>
       <TextField label="Kilo (kg)" type="number" value={weight} onChange={(e) => setWeight(e.target.value)} fullWidth margin="normal" />
       <TextField label="Boy (cm)" type="number" value={height} onChange={(e) => setHeight(e.target.value)} fullWidth margin="normal" />
       <TextField label="Yaş" type="number" value={age} onChange={(e) => setAge(e.target.value)} fullWidth margin="normal" />
       <TextField label="Hedef Kilo (kg)" type="number" value={goalWeight} onChange={(e) => setGoalWeight(e.target.value)} fullWidth margin="normal" />
       <TextField select label="Cinsiyet" value={gender} onChange={(e) => setGender(e.target.value)} fullWidth margin="normal" SelectProps={{ native: true }}>
-        <option value="male">Erkek</option>
-        <option value="female">Kadın</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
       </TextField>
       <TextField select label="Aktivite Seviyesi" value={activityLevel} onChange={(e) => setActivityLevel(e.target.value)} fullWidth margin="normal" SelectProps={{ native: true }}>
-        <option value="1.2">Hareketsiz</option>
-        <option value="1.375">Hafif aktif</option>
-        <option value="1.55">Orta derecede aktif</option>
-        <option value="1.725">Çok aktif</option>
-        <option value="1.9">Aşırı aktif</option>
+        <option value="1.2">Sedentary</option>
+        <option value="1.375">Lightly Active</option>
+        <option value="1.55">Moderately Active</option>
+        <option value="1.725">Very Active</option>
+        <option value="1.9">Extremely Active</option>
       </TextField>
       <Button variant="contained" color="primary" onClick={calculateCalories} style={{ marginTop: '10px' }}>
-        Hesapla
+      Calculate 𓂃🖊
       </Button>
       <Button variant="outlined" onClick={onBack} style={{ marginTop: '10px' }}>
-        Geri Dön
+       Go Back ↩
       </Button>
       {dailyCalories !== null && (
         <Typography variant="h6" style={{ marginTop: '10px' }}>
-          Günlük Kalori İhtiyacınız: {dailyCalories} kcal
+          Your Daily Caloric Needs: {dailyCalories} kcal
         </Typography>
       )}
    
@@ -274,17 +274,17 @@ const Tutorial = () => {
   return (
     <Container maxWidth="sm">
       <TitleContainer>
-        <Title variant="h6">Egzersiz ve Kalori Hesaplama Rehberi</Title>
+        <Title variant="h6">Exercise and Calorie Calculation Guide</Title>
       </TitleContainer>
       {!showCalories && !showExercises ? (
         <>
           <ButtonContainer>
-            <SelectButton variant="contained" onClick={() => setShowCalories(true)}>Kalori Hesapla</SelectButton>
-            <SelectButton variant="contained" onClick={() => setShowExercises(true)}>Bölge Seç</SelectButton>
+            <SelectButton variant="contained" onClick={() => setShowCalories(true)}>Calculate Calories</SelectButton>
+            <SelectButton variant="contained" onClick={() => setShowExercises(true)}>Select Muscle Group</SelectButton>
           </ButtonContainer>
           {/* Resmi buraya ekleyin */}
 
-          <Text>"Fit olmak bir hedef değil, yaşam biçimidir."</Text>
+          <Text>"Being fit is not a goal, it's a way of life. 🦍"</Text>
           <div style={{ marginTop: '40px', textAlign: 'center' }}>
             <img 
               src={Karikatur} 
@@ -318,7 +318,7 @@ const Tutorial = () => {
                   }}
                   style={{ marginTop: '10px' }}
                 >
-                  Geri Dön
+                Go Back ↩
                 </Button>
               </ButtonContainer>
             ) : (

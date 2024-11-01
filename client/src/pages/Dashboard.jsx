@@ -149,7 +149,7 @@ const Dashboard = () => {
         </FlexWrap>
 
         <Section>
-          <Title>Todays Workouts</Title>
+          <Title>Todays Workouts 🎯</Title>
           <CardWrapper>
             {todaysWorkouts.map((workout) => (
               <WorkoutCard
