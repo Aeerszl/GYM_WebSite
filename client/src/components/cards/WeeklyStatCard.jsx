@@ -29,7 +29,7 @@ const Title = styled.div`
 const WeeklyStatCard = ({ data }) => {
   return (
     <Card>
-      <Title>Weekly Calories Burned</Title>
+      <Title>Weekly Calories Burned 📶</Title>
       {data?.totalWeeksCaloriesBurnt && (
         <BarChart
           xAxis={[

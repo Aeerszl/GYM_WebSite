@@ -10,7 +10,7 @@ import Blog3 from '../utils/Images/Blog3.jpg';
 import Blog4 from '../utils/Images/Blog4.jpg'; // New image file
 import Blog5 from '../utils/Images/Blog5.jpg'; // New image file
 import Blog6 from '../utils/Images/Blog6.jpg'; // New image file
-
+ import { lightTheme } from '../utils/Themes'; // lightTheme'yi burada doğrudan kullanabilirsiniz
 const blogPosts = [
   {
     id: 1,
@@ -87,9 +87,15 @@ const Blogs = () => {
         </Card>
       ) : (
         <>
-          <Typography variant="h2" gutterBottom align="center">
-            Blog Posts
-          </Typography>
+         <Typography 
+  variant="h4" 
+  gutterBottom 
+  align="center" 
+  sx={{ color: lightTheme.primary }} // lightTheme'yi burada doğrudan kullanabilirsiniz
+>
+  Blog Posts 📰
+</Typography>
+
           <Grid container spacing={3}>
             {blogPosts.map((post) => (
               <Grid item xs={12} sm={6} md={4} key={post.id}>
