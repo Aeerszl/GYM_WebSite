@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { PieChart } from "@mui/x-charts/PieChart";
-
+import DonutSmallIcon from '@mui/icons-material/DonutSmall';
 const Card = styled.div`
   flex: 1;
   min-width: 280px;
@@ -28,7 +28,7 @@ const Title = styled.div`
 const CategoryChart = ({ data }) => {
   return (
     <Card>
-      <Title>Weekly Calories Burned ⏺️</Title>
+      <Title>Weekly Calories Burned <DonutSmallIcon style={{ color: "#aed1e3"}} /> </Title>
       {data?.pieChartData && (
         <PieChart
           series={[

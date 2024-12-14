@@ -2,7 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BarChart } from "@mui/x-charts/BarChart";
-
+import BarChartIcon from "@mui/icons-material/BarChart"; // BarChartIcon'u default olarak import edin
 const Card = styled.div`
   flex: 1;
   min-width: 280px;
@@ -29,7 +29,7 @@ const Title = styled.div`
 const WeeklyStatCard = ({ data }) => {
   return (
     <Card>
-      <Title>Weekly Calories Burned 📶</Title>
+      <Title>Weekly Calories Burned <BarChartIcon  style={{ color: "#aed1e3"}} /></Title>
       {data?.totalWeeksCaloriesBurnt && (
         <BarChart
           xAxis={[
