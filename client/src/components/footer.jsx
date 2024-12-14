@@ -137,7 +137,7 @@ const Footer = () => {
         </SocialIcon>
       </SocialMedia>
 
-      <FooterText>© {currentYear} MyWebsite. Tüm hakları saklıdır.</FooterText>
+      <FooterText>© {currentYear} GymWeb-A. Tüm hakları saklıdır.</FooterText>
     </FooterContainer>
   );
 };

@@ -236,15 +236,15 @@ const CalorieCalculator = ({ onBack }) => {
   return (
     <CalorieCalculatorContainer>
       <Typography variant="h7">Calorie Calculation</Typography>
-      <TextField label="Kilo (kg)" type="number" value={weight} onChange={(e) => setWeight(e.target.value)} fullWidth margin="normal" />
-      <TextField label="Boy (cm)" type="number" value={height} onChange={(e) => setHeight(e.target.value)} fullWidth margin="normal" />
-      <TextField label="Yaş" type="number" value={age} onChange={(e) => setAge(e.target.value)} fullWidth margin="normal" />
-      <TextField label="Hedef Kilo (kg)" type="number" value={goalWeight} onChange={(e) => setGoalWeight(e.target.value)} fullWidth margin="normal" />
-      <TextField select label="Cinsiyet" value={gender} onChange={(e) => setGender(e.target.value)} fullWidth margin="normal" SelectProps={{ native: true }}>
+      <TextField label="Weight (kg)" type="number" value={weight} onChange={(e) => setWeight(e.target.value)} fullWidth margin="normal" />
+      <TextField label="Height (cm)" type="number" value={height} onChange={(e) => setHeight(e.target.value)} fullWidth margin="normal" />
+      <TextField label="Age" type="number" value={age} onChange={(e) => setAge(e.target.value)} fullWidth margin="normal" />
+      <TextField label="Goal Weight (kg)" type="number" value={goalWeight} onChange={(e) => setGoalWeight(e.target.value)} fullWidth margin="normal" />
+      <TextField select label="Gender" value={gender} onChange={(e) => setGender(e.target.value)} fullWidth margin="normal" SelectProps={{ native: true }}>
         <option value="male">Male</option>
         <option value="female">Female</option>
       </TextField>
-      <TextField select label="Aktivite Seviyesi" value={activityLevel} onChange={(e) => setActivityLevel(e.target.value)} fullWidth margin="normal" SelectProps={{ native: true }}>
+      <TextField select label="Activity Level" value={activityLevel} onChange={(e) => setActivityLevel(e.target.value)} fullWidth margin="normal" SelectProps={{ native: true }}>
         <option value="1.2">Sedentary</option>
         <option value="1.375">Lightly Active</option>
         <option value="1.55">Moderately Active</option>
@@ -252,17 +252,16 @@ const CalorieCalculator = ({ onBack }) => {
         <option value="1.9">Extremely Active</option>
       </TextField>
       <Button variant="contained" color="primary" onClick={calculateCalories} style={{ marginTop: '10px' }}>
-      Calculate 𓂃🖊
+        Calculate 𓂃🖊
       </Button>
       <Button variant="outlined" onClick={onBack} style={{ marginTop: '10px' }}>
-       Go Back ↩
+        Go Back ↩
       </Button>
       {dailyCalories !== null && (
         <Typography variant="h6" style={{ marginTop: '10px' }}>
           Your Daily Caloric Needs: {dailyCalories} kcal
         </Typography>
       )}
-   
     </CalorieCalculatorContainer>
   );
 };
