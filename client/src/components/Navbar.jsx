@@ -44,12 +44,12 @@ const NavLogo = styled(LinkR)`
     @media (max-width: 768px) {
     font-size: 10px; /* Tablet ve daha küçük ekranlar için */
   
-  }
-
-`;
+  }`;
 const Logo = styled.img`
   height: 98px;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 50% 100%, 0% 80%);
 `;
+
 const Mobileicon = styled.div`
   color: ${({ theme }) => theme.text_primary};
   display: none;
