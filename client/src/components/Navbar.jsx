@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import styled from "styled-components";
 import LogoImg from "../utils/Images/GymLogo.png";
@@ -41,10 +40,11 @@ const NavLogo = styled(LinkR)`
   font-size: 14px;
   text-decoration: none;
   color: ${({ theme }) => theme.black};
-    @media (max-width: 768px) {
-    font-size: 10px; /* Tablet ve daha küçük ekranlar için */
-  
-  }`;
+
+  @media (max-width: 768px) {
+    font-size: 12px; /* Tablet ve daha küçük ekranlar için */
+  }
+`;
 const Logo = styled.img`
   height: 98px;
   clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 50% 100%, 0% 80%);
@@ -138,6 +138,11 @@ const MobileMenu = styled.ul`
 const Navbar = ({ currentUser }) => {
   const dispatch = useDispatch();
   const [isOpen, setisOpen] = useState(false);
+
+  const handleNavLinkClick = () => {
+    setisOpen(false);
+  };
+
   return (
     <Nav>
       <NavContainer>
@@ -146,15 +151,15 @@ const Navbar = ({ currentUser }) => {
         </Mobileicon>
         <NavLogo to="/">
           <Logo src={LogoImg} />
-         GymWeb-A
         </NavLogo>
-
+         <p>          GymWeb-A
+         </p>
         <MobileMenu isOpen={isOpen}>
-          <Navlink to="/">Dashboard</Navlink>
-          <Navlink to="/workouts">Workouts</Navlink>
-          <Navlink to="/tutorial">Tutorials</Navlink>
-          <Navlink to="/blogs">Blogs</Navlink>
-          <Navlink to="/contact">Contact</Navlink>
+          <Navlink to="/" onClick={handleNavLinkClick}>Dashboard</Navlink>
+          <Navlink to="/workouts" onClick={handleNavLinkClick}>Workouts</Navlink>
+          <Navlink to="/tutorial" onClick={handleNavLinkClick}>Tutorials</Navlink>
+          <Navlink to="/blogs" onClick={handleNavLinkClick}>Blogs</Navlink>
+          <Navlink to="/contact" onClick={handleNavLinkClick}>Contact</Navlink>
         </MobileMenu>
 
         <NavItems>
